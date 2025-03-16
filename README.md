@@ -23,8 +23,8 @@ A React Native application that allows users to browse episodes of the TV show *
 1. Clone the repository:
 
    ```bash
-   git clone git@github.com:AmalMenachery/TEDLASSOFANS.git
-   cd 
+   git clone git@github.com:AmalMenachery/ted-lasso-fan-app.git
+   cd ted-lasso-fan-app
    ```
 
 2. Install dependencies:
