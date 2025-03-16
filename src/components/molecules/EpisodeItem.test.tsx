@@ -7,6 +7,11 @@ describe("EpisodeItem Component", () => {
     id: 1,
     name: "Pilot",
     image: { medium: "https://example.com/image.jpg" },
+    season: 1,
+    number: 1,
+    airdate: "2021-01-01",
+    runtime: 30,
+    rating: { average: 8.5 },
   };
   const mockOnPress = jest.fn();
   const mockOnFavoriteToggle = jest.fn();
@@ -37,7 +42,7 @@ describe("EpisodeItem Component", () => {
   });
 
   it("handles favorite toggle", () => {
-    const { getByText } = render(
+    const { getByTestId } = render(
       <EpisodeItem
         episode={mockEpisode}
         onPress={mockOnPress}
@@ -45,7 +50,7 @@ describe("EpisodeItem Component", () => {
         isFavorite={false}
       />
     );
-    fireEvent.press(getByText("★"));
+    fireEvent.press(getByTestId("favoriteButton"));
     expect(mockOnFavoriteToggle).toHaveBeenCalled();
   });
 });

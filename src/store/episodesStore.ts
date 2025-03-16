@@ -1,12 +1,7 @@
 import { create } from "zustand";
 import { getEpisodes } from "../services/episodeService";
 import { getFavorites, setFavorites } from "../utils/storage";
-
-export interface Episode {
-  id: number;
-  name: string;
-  image?: { medium: string };
-}
+import { Episode } from "../types/common.types";
 
 type EpisodesStore = {
   episodes: Episode[];

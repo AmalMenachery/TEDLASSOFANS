@@ -1,11 +1,8 @@
 import { SERVICE_URLS } from "../constants/common";
+import { Episode } from "../types/common.types";
 import apiClient from "./apiService";
 
-type Episode = {
-  id: number;
-  name: string;
-  image?: { medium: string };
-};
+
 
 export const getEpisodes = async (): Promise<Episode[]> => {
   try {

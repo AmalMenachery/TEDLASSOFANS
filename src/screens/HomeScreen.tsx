@@ -15,6 +15,7 @@ const HomeScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
       <FlashList
+        showsVerticalScrollIndicator={false}
         data={episodes}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (

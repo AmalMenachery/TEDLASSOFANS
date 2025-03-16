@@ -7,7 +7,8 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "test": "EXPO_OS=ios node ./node_modules/jest/bin/jest.js"
+    "test": "EXPO_OS=ios node ./node_modules/jest/bin/jest.js",
+    "adb": "adb reverse tcp:8081 tcp:8081"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.1.2",
