@@ -1,19 +1,10 @@
 import axios from 'axios';
+import { TV_MAZE_BASE_URL } from '../constants/common';
 
-const API_URL = 'https://api.tvmaze.com/shows/44458/episodes';
 
-interface Episode {
-  id: number;
-  name: string;
-  image?: { medium: string };
-}
+const apiClient = axios.create({
+  baseURL: TV_MAZE_BASE_URL,
+  timeout: 5000,
+});
 
-export const getEpisodes = async (): Promise<Episode[]> => {
-  try {
-    const response = await axios.get<Episode[]>(API_URL);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching episodes:', error);
-    return [];
-  }
-};
+export default apiClient;

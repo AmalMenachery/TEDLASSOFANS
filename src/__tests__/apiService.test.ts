@@ -1,19 +1,27 @@
+import nock from 'nock';
 import { getEpisodes } from '../services/apiService';
-import axios from 'axios';
-
-jest.mock('axios');
 
 describe('API Service', () => {
+  afterEach(() => {
+    nock.cleanAll();
+  });
+
   it('fetches episodes successfully', async () => {
     const mockData = [{ id: 1, name: 'Pilot' }];
-    (axios.get as jest.Mock).mockResolvedValue({ data: mockData });
+
+    nock('https://api.tvmaze.com')
+      .get('/shows/44458/episodes')
+      .reply(200, mockData);
 
     const episodes = await getEpisodes();
     expect(episodes).toEqual(mockData);
   });
 
   it('handles API failure', async () => {
-    (axios.get as jest.Mock).mockRejectedValue(new Error('API Error'));
+    nock('https://api.tvmaze.com')
+      .get('/shows/44458/episodes')
+      .reply(500);
+
     const episodes = await getEpisodes();
     expect(episodes).toEqual([]);
   });

@@ -1,14 +1,14 @@
-import create from 'zustand';
-import { getEpisodes } from '../services/apiService';
-import { getFavorites, setFavorites } from '../utils/storage';
+import { create } from "zustand";
+import { getEpisodes } from "../services/episodeService";
+import { getFavorites, setFavorites } from "../utils/storage";
 
-interface Episode {
+export interface Episode {
   id: number;
   name: string;
   image?: { medium: string };
 }
 
-interface EpisodesStore {
+type EpisodesStore = {
   episodes: Episode[];
   favorites: Record<number, boolean>;
   fetchEpisodes: () => Promise<void>;
@@ -25,7 +25,10 @@ export const useEpisodesStore = create<EpisodesStore>((set) => ({
   },
   toggleFavorite: async (id) => {
     set((state) => {
-      const updatedFavorites = { ...state.favorites, [id]: !state.favorites[id] };
+      const updatedFavorites = {
+        ...state.favorites,
+        [id]: !state.favorites[id],
+      };
       setFavorites(updatedFavorites);
       return { favorites: updatedFavorites };
     });
